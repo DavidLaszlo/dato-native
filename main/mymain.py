@@ -25,13 +25,13 @@ print('Hello')
 
 print_time()
 print('--- Read training labels')
-train_labels = pd.read_csv('../../../data/train_v2_2.csv')
+train_labels = pd.read_csv('../../../data/train_v2.csv')
 train_keys = dict([a[1] for a in train_labels.iterrows()])
 
 num_tasks = len(train_labels)
 print('Train labels found: ')
 print(num_tasks)
-file_paths = glob.glob('../../../data/0/*.txt')
+file_paths = glob.glob('../../../data/*/*/*.txt')
 
 p = multiprocessing.Pool()
 results = p.map(mydatacreator.create_data, file_paths)
@@ -48,5 +48,5 @@ print("--- Data read and mapped: {:,}".format(len(results), end=''))
 
 test_files = set(pd.read_csv('../../../data/sampleSubmission_v2.csv').file.values)
 submission = myrandomforestclassifier.classify(pd.DataFrame(list(results)), test_files)
-submission.to_csv('../../../native_btb_basic_submission.csv', index=False)
+submission.to_csv('../../../my_native_btb_basic_submission.csv', index=False)
 print_time()

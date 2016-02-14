@@ -3,7 +3,7 @@ from sklearn.ensemble import RandomForestClassifier
 
 def classify(df_full, test_files):
     print('--- Training random forest')
-
+    print(df_full)
     clf = RandomForestClassifier(n_estimators=100, n_jobs=-1, random_state=0)
     train = df_full[df_full.sponsored.notnull()].fillna(0)
     test = df_full[df_full.sponsored.isnull() & df_full.file.isin(test_files)].fillna(0)

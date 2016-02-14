@@ -19,6 +19,7 @@ def print_time():
     st = datetime.datetime.fromtimestamp(ts).strftime('%H:%M:%S')
     print(st)
 
+
 print('Hello')
 print_time()
 print('--- Read training labels')
